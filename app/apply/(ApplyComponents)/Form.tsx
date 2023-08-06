@@ -1,0 +1,347 @@
+"use client";
+import { client } from "@/app/utils/client";
+import React, { useState } from "react";
+
+interface FormData {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  address: string;
+  city: string;
+  state: string;
+  email: string;
+  codingExperience: string;
+  careerPath: string;
+  goals: string;
+  interviewTime: string[];
+}
+
+const Form: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    address: "",
+    city: "",
+    state: "",
+    email: "",
+    codingExperience: "",
+    careerPath: "",
+    goals: "",
+    interviewTime: [],
+  });
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setFormData((prevData) => ({
+        ...prevData,
+        interviewTime: [...prevData.interviewTime, value],
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        interviewTime: prevData.interviewTime.filter((time) => time !== value),
+      }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Handle form submission here
+    // ... (rest of your existing code)
+
+    // Create a new applicant in Sanity
+    try {
+      const response = await client.create({
+        _type: "application", // This should match the name of your Sanity schema for applicants
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        phone: formData.phone,
+        address: formData.address,
+        city: formData.city,
+        state: formData.state,
+        email: formData.email,
+        codingExperience: formData.codingExperience,
+        careerPath: formData.careerPath,
+        goals: formData.goals,
+        interviewTime: formData.interviewTime,
+      });
+
+      console.log("Applicant created:", response);
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        address: "",
+        city: "",
+        state: "",
+        email: "",
+        codingExperience: "",
+        careerPath: "",
+        goals: "",
+        interviewTime: [],
+      });
+      // Optionally, you can display a success message to the user after successful submission.
+    } catch (error) {
+      console.error("Error creating applicant:", error);
+      // Handle errors here if necessary.
+    }
+  };
+  return (
+    <div className="mx-auto max-w-[60%] bg-gray-100 px-10 mt-[10vh] rounded-xl py-[10vh]">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <h1 className="font-bold text-2xl mb-[5vh]">Application Form</h1>
+        <div>
+          <label
+            htmlFor="firstName"
+            className="block text-sm font-medium text-gray-700"
+          >
+            First Name
+          </label>
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            value={formData.firstName}
+            onChange={handleInputChange}
+            className="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md outline-none"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="lastName"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Last Name
+          </label>
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            value={formData.lastName}
+            onChange={handleInputChange}
+            className="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md outline-none"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="phone"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Phone
+          </label>
+          <input
+            type="text"
+            name="phone"
+            id="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
+            className="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md outline-none"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="address"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Address
+          </label>
+          <input
+            type="text"
+            name="address"
+            id="address"
+            value={formData.address}
+            onChange={handleInputChange}
+            className="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md outline-none"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="city"
+            className="block text-sm font-medium text-gray-700"
+          >
+            City
+          </label>
+          <input
+            type="text"
+            name="city"
+            id="city"
+            value={formData.city}
+            onChange={handleInputChange}
+            className="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md outline-none"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="state"
+            className="block text-sm font-medium text-gray-700"
+          >
+            State
+          </label>
+          <input
+            type="text"
+            name="state"
+            id="state"
+            value={formData.state}
+            onChange={handleInputChange}
+            className="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md outline-none"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Email
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            className="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md outline-none"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="codingExperience"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Coding Experience
+          </label>
+          <textarea
+            name="codingExperience"
+            id="codingExperience"
+            value={formData.codingExperience}
+            onChange={handleInputChange}
+            rows={3}
+            className="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md outline-none"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="careerPath"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Career Path
+          </label>
+          <textarea
+            name="careerPath"
+            id="careerPath"
+            value={formData.careerPath}
+            onChange={handleInputChange}
+            rows={3}
+            className="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md outline-none"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="goals"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Goals
+          </label>
+          <textarea
+            name="goals"
+            id="goals"
+            value={formData.goals}
+            onChange={handleInputChange}
+            rows={3}
+            className="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md outline-none"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Schedule Time for 1 on 1 interview
+          </label>
+          <div className="mt-2 space-y-2">
+            <label htmlFor="monday" className="flex items-center">
+              <input
+                type="checkbox"
+                name="monday"
+                value="Monday - 4pm-6pm"
+                onChange={handleCheckboxChange}
+                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+              />
+              <span className="ml-2 text-sm text-gray-600">
+                Monday - 4pm-6pm
+              </span>
+            </label>
+            <label htmlFor="tuesday" className="flex items-center">
+              <input
+                type="checkbox"
+                name="tuesday"
+                value="Tuesday - 4pm-6pm"
+                onChange={handleCheckboxChange}
+                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+              />
+              <span className="ml-2 text-sm text-gray-600">
+                Tuesday - 4pm-6pm
+              </span>
+            </label>
+            <label htmlFor="wednesday" className="flex items-center">
+              <input
+                type="checkbox"
+                name="wednesday"
+                value="Wednesday - 4pm-6pm"
+                onChange={handleCheckboxChange}
+                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+              />
+              <span className="ml-2 text-sm text-gray-600">
+                Wednesday - 4pm-6pm
+              </span>
+            </label>
+            <label htmlFor="thursday" className="flex items-center">
+              <input
+                type="checkbox"
+                name="thursday"
+                value="Thursday - 4pm-6pm"
+                onChange={handleCheckboxChange}
+                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+              />
+              <span className="ml-2 text-sm text-gray-600">
+                Thursday - 4pm-6pm
+              </span>
+            </label>
+            <label htmlFor="friday" className="flex items-center">
+              <input
+                type="checkbox"
+                name="friday"
+                value="Friday - 4pm-6pm"
+                onChange={handleCheckboxChange}
+                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+              />
+              <span className="ml-2 text-sm text-gray-600">
+                Friday - 4pm-6pm
+              </span>
+            </label>
+          </div>
+        </div>
+        <div>
+          <button
+            type="submit"
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default Form;
