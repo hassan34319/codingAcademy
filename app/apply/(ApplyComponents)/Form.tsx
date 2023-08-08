@@ -1,5 +1,6 @@
 "use client";
 import { client } from "@/app/utils/client";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 interface FormData {
@@ -17,6 +18,7 @@ interface FormData {
 }
 
 const Form: React.FC = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -58,7 +60,6 @@ const Form: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     // Handle form submission here
     // ... (rest of your existing code)
 
@@ -81,19 +82,50 @@ const Form: React.FC = () => {
 
       console.log("Applicant created:", response);
 
-      setFormData({
-        firstName: "",
-        lastName: "",
-        phone: "",
-        address: "",
-        city: "",
-        state: "",
-        email: "",
-        codingExperience: "",
-        careerPath: "",
-        goals: "",
-        interviewTime: [],
+      const response_stripe = await fetch("/api/checkoutSession", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          phone: formData.phone,
+          address: formData.address,
+          city: formData.city,
+          state: formData.state,
+          email: formData.email,
+          codingExperience: formData.codingExperience,
+          careerPath: formData.careerPath,
+          goals: formData.goals,
+          interviewTime: formData.interviewTime,
+        }),
       });
+
+      const data = await response_stripe.json();
+      console.log(data);
+
+      if (data.error) {
+        // Handle the error
+        console.error(data.error);
+      } else {
+        setFormData({
+          firstName: "",
+          lastName: "",
+          phone: "",
+          address: "",
+          city: "",
+          state: "",
+          email: "",
+          codingExperience: "",
+          careerPath: "",
+          goals: "",
+          interviewTime: [],
+        });
+
+        // Redirect the user to the Stripe Checkout page
+        router.push(`${data.url}`);
+      }
       // Optionally, you can display a success message to the user after successful submission.
     } catch (error) {
       console.error("Error creating applicant:", error);
@@ -103,7 +135,8 @@ const Form: React.FC = () => {
   return (
     <div className="mx-auto max-w-[60%] bg-gray-100 px-10 mt-[10vh] rounded-xl py-[10vh]">
       <form onSubmit={handleSubmit} className="space-y-6">
-        <h1 className="font-bold text-2xl mb-[5vh]">Application Form</h1>
+        <h1 className="font-bold text-2xl mb-[3vh]">Application Form</h1>
+        <p className="font-normal text-sm opacity-80 text-red-600 mb-[5vh]">Note : Application Fees of $40 will apply</p>
         <div>
           <label
             htmlFor="firstName"
