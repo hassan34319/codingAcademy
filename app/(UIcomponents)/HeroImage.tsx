@@ -5,12 +5,12 @@ type Props = {};
 
 function HeroImage({}: Props) {
   return (
-    <div className="relative w-[90%] mx-auto h-[65vh] mt-[-24vh]">
+    <div className="relative md:w-[90%] w-[95%] mx-auto lg:h-[65vh] md:h-[40vh] h-[30vh] lg:mt-[-24vh] mt-[-18vh]">
       <Image
         alt="heroSectionImage"
         src="/Main.png"
         fill
-        className="object-cover"
+        className="md:object-contain"
       />
     </div>
   );

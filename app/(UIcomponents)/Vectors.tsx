@@ -84,8 +84,7 @@ export function Facebook() {
 export function Arrow() {
   return (
     <svg
-      width="90"
-      height="61"
+      className="md:h-[60px] md:w-[91px] h-[30px] w-[45px]"
       viewBox="0 0 108 74"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -101,8 +100,7 @@ export function Arrow() {
 export function Play() {
   return (
     <svg
-      width="30"
-      height="32"
+      className="md:h-[32px] md:w-[30px] w-[20px] h-[22px]"
       viewBox="0 0 41 46"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

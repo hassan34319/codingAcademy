@@ -6,12 +6,12 @@ import { Arrow, Play } from "./../(UIcomponents)/Vectors";
 
 export default function BootcampPrep() {
   return (
-    <main className="h-max bg-black pb-10">
+    <main className="h-max min-h-[100vh] bg-black pb-10">
       {/* Hero Section */}
-      <div className="bg-white  h-[100vh] w-full rounded-b-[60px]">
+      <div className="bg-white  h-[80vh] md:h-[75vh] lg:h-[100vh] w-full rounded-b-[60px]">
         {/* Header */}
-        <h1 className="pt-[10vh] font-bold text-5xl text-center w-[90%] mx-auto ">
-          Bootcamp{" "}
+        <h1 className="md:pt-[10vh] pt-[6vh] font-extrabold text-2xl md:text-5xl lg:text-5xl text-center w-[95%] md:w-[90%] mx-auto ">
+          Bootcamp
           <span className="text-[#ECEAE0] bg-[#313132] rounded-[2rem] px-4">
             Prep
           </span>{" "}
@@ -20,8 +20,7 @@ export default function BootcampPrep() {
         <div className="bg-white flex justify-between items-center mt-[5vh] w-[90%] mx-auto">
           <RedBanner
             num="04"
-            text="Week
-            Week Intensive"
+            text="page6.png"
           />
           <ArrowSuccess />
           <HeroContent

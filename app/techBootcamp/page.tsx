@@ -26,23 +26,22 @@ export default async function TechBootcamp() {
   return (
     <main className="h-max bg-black pb-10 ">
       {/* Hero Section */}
-      <div className="bg-white  h-[100vh] w-full rounded-b-[60px]">
+      <div className="bg-white  h-[80vh] md:h-[75vh] lg:h-[100vh] w-full rounded-b-[60px]">
         {/* Header */}
-        <h1 className="pt-[10vh] font-bold text-5xl text-center w-[90%] mx-auto ">
+        <h1 className="md:pt-[10vh] pt-[6vh] font-extrabold text-2xl md:text-4xl lg:text-5xl text-center w-[95%] md:w-[90%] mx-auto ">
           Full Stack Web{" "}
           <span className="text-[#ECEAE0] bg-[#313132] rounded-[2rem] px-4">
             Development
           </span>{" "}
         </h1>
-        <h1 className=" font-extrabold text-5xl text-center w-[90%] mx-auto  mt-[3vh]">
+        <h1 className=" text-center w-[90%] mx-auto lg:mt-[3vh]  font-extrabold text-xl md:text-4xl lg:text-5xl">
           Certification
         </h1>
         {/* Main Content */}
         <div className="bg-white flex justify-between items-center mt-[5vh] w-[90%] mx-auto">
           <RedBanner
             num="24"
-            text="Week
-            Project Base"
+            text="page7.png"
           />
           <ArrowSuccess />
           <HeroContent
@@ -54,8 +53,8 @@ a career as professional software engineer and start-up entrepreneur."
       {/* Hero Image */}
       <HeroImage />
       {/* Daily Schedule */}
-      <div className="bg-black h-max pb-[4vh] w-[90%] text-white mx-auto">
-        <h1 className="font-medium text-3xl mt-[4vh]">Daily Schedule</h1>
+      <div className="bg-black h-max pb-[4vh] md:w-[90%] w-[95%] text-white mx-auto">
+        <h1 className="font-medium text-xl md:text-3xl mt-[4vh]">Daily Schedule</h1>
         <div className="mt-[4vh]">
           <TimeSlots time="9:00 AM – 9: 45 AM" lesson="Coding Challenge" />
           <TimeSlots

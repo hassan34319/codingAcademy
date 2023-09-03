@@ -17,7 +17,7 @@ function ListItem({ number, title, description }: Props) {
     <div className="border-b border-white border-opacity-50 py-6">
       <div className=" flex flex-row items-center">
         <div className="h-6 w-6 border-white border-opacity-50 border-[1px] rounded-full text-center text-opacity-50">
-          <span className="text-opacity-50 text-sm opacity-50 my-auto">
+          <span className="text-opacity-50 opacity-50 my-auto text-sm flex items-center justify-center">
             {number}
           </span>
         </div>

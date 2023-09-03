@@ -9,14 +9,14 @@ import { Arrow, Play } from "./(UIcomponents)/Vectors";
 
 export default function Home() {
   return (
-    <main className="h-max bg-black pb-[6vh] border-0">
+    <main className="h-max bg-black pb-[6vh] border-0 w-full">
       {/* Hero Section */}
-      <div className="bg-white  h-[100vh] w-full rounded-b-[60px]">
+      <div className="bg-white  h-[80vh] md:h-[75vh] lg:h-[100vh] w-full rounded-b-[60px]">
         {/* Header */}
-        <h1 className="pt-[10vh] font-bold text-5xl text-center w-[90%] mx-auto ">
+        <h1 className="md:pt-[10vh] pt-[6vh] font-extrabold text-2xl md:text-4xl lg:text-5xl text-center w-[95%] md:w-[90%] mx-auto ">
           ACCELERATE YOUR CAREER,
         </h1>
-        <h1 className=" font-extrabold text-5xl text-center w-[90%] mx-auto  mt-[3vh]">
+        <h1 className=" text-center w-[90%] mx-auto lg:mt-[3vh]  font-extrabold text-2xl md:text-4xl telg:text-5xl">
           BECOME A{" "}
           <span className="text-[#ECEAE0] bg-[#313132] rounded-[2rem] px-4">
             SOFTWARE
@@ -24,11 +24,10 @@ export default function Home() {
           ENGINEER
         </h1>
         {/* Main Content */}
-        <div className="bg-white flex justify-between items-center mt-[5vh] w-[90%] mx-auto">
+        <div className="bg-white flex justify-between items-center mt-[5vh] w-[95%] md:w-[90%] mx-auto">
           <RedBanner
             num="14+"
-            text="Years of 
-Experience"
+            text="page1.png"
           />
           <ArrowSuccess />
           <HeroContent
@@ -41,9 +40,9 @@ No prior experience necessary. Get trained, get hired."
       {/* Hero Image */}
       <HeroImage />
       {/* Provided Benefits */}
-      <div className="bg-black h-max pb-[4vh] w-[90%] text-white mx-auto">
+      <div className="bg-black h-max lg:pb-[4vh] w-[90%] text-white mx-auto">
         <h1 className="font-medium text-3xl mt-[4vh]">What We Provided</h1>
-        <div className="flex flex-row justify-between mt-[4vh] mb-[4vh]">
+        <div className="flex flex-col md:flex-row justify-between mt-[4vh] mb-[4vh]">
           <Benefit
             title="Small Class Sizes"
             description="              Classes are capped at 25 students to ensure quality training
@@ -79,10 +78,10 @@ No prior experience necessary. Get trained, get hired."
           description="You can follow these guidelines to prepare for the course."
         />
         <div className="flex flex-col items-center justify-center mt-[8vh]">
-          <button className="px-6 py-3 bg-white rounded-[60px] text-black w-[20%] font-semibold text-2xl">
+          <button className="px-6 py-3 bg-white rounded-[60px] text-black lg:w-[20%] md:w-[40%] w-[60%] font-semibold text-2xl">
             Apply Now
           </button>
-          <p className="text-white text-lg font-light mt-[6vh]">
+          <p className="text-white text-lg font-light mt-[6vh] text-center">
             Accelerate your career, become a software engineer. Apply today.
           </p>
         </div>

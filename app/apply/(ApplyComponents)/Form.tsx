@@ -133,7 +133,7 @@ const Form: React.FC = () => {
     }
   };
   return (
-    <div className="mx-auto max-w-[60%] bg-gray-100 px-10 mt-[10vh] rounded-xl py-[10vh]">
+    <div className="mx-auto max-w-[90%] md:max-w-[80%] lg:max-w-[60%] bg-gray-100 px-10 mt-[10vh] rounded-xl py-[10vh]">
       <form onSubmit={handleSubmit} className="space-y-6">
         <h1 className="font-bold text-2xl mb-[3vh]">Application Form</h1>
         <p className="font-normal text-sm opacity-80 text-red-600 mb-[5vh]">Note : Application Fees of $40 will apply</p>

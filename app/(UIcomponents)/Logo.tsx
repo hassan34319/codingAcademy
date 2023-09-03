@@ -12,8 +12,8 @@ function Logo({
   width
 }: Props) {
   return (
-    <Link className={`h-[${height}vh] relative w-[${width}%] cursor-pointer`} href="/">
-      <Image src="/logo.png" alt="logo" fill className="object-contain" />
+    <Link className={`relative lg:h-[${height}vh] relative lg:w-[${width}%] hidden lg:flex h-10 w-20 cursor-pointer my-auto`} href="/">
+      <Image src="/logo2.png" alt="logo" fill className="object-contain" />
     </Link>
   );
 }
