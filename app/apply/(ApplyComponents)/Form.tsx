@@ -65,23 +65,7 @@ const Form: React.FC = () => {
 
     // Create a new applicant in Sanity
     try {
-      const response = await client.create({
-        _type: "application", // This should match the name of your Sanity schema for applicants
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        phone: formData.phone,
-        address: formData.address,
-        city: formData.city,
-        state: formData.state,
-        email: formData.email,
-        codingExperience: formData.codingExperience,
-        careerPath: formData.careerPath,
-        goals: formData.goals,
-        interviewTime: formData.interviewTime,
-      });
-
-      console.log("Applicant created:", response);
-
+     
       const response_stripe = await fetch("/api/checkoutSession", {
         method: "POST",
         headers: {
@@ -109,6 +93,23 @@ const Form: React.FC = () => {
         // Handle the error
         console.error(data.error);
       } else {
+        const response = await client.create({
+          _type: "application", // This should match the name of your Sanity schema for applicants
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          phone: formData.phone,
+          address: formData.address,
+          city: formData.city,
+          state: formData.state,
+          email: formData.email,
+          codingExperience: formData.codingExperience,
+          careerPath: formData.careerPath,
+          goals: formData.goals,
+          interviewTime: formData.interviewTime,
+        });
+  
+        console.log("Applicant created:", response);
+  
         setFormData({
           firstName: "",
           lastName: "",
